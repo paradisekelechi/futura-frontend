@@ -1,0 +1,14 @@
+.nav-wrapper{
+    display: flex;
+    justify-content: space-between;
+
+    span{
+        font-family: 'Berkshire Swash', Arial, Helvetica, sans-serif;
+    }
+
+    ul{
+        display: flex;
+        justify-content: space-evenly;
+        width: 250px;
+    }
+}
