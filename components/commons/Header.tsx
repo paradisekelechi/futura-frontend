@@ -24,8 +24,9 @@ const NavWrapper = styled.div`
 `;
 
 const Logo = styled.span`
-    font-family: 'Berkshire Swash', cursive;
-    font-size: 26px;
+    font-family: 'Kodchasan', 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
     color: ${Colors.darkBlue};
 `;
 
