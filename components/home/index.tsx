@@ -12,10 +12,10 @@ export interface HomeState {
 
 }
 
-const Section = styled.div<{ color: string }>`
+const Section = styled.div<{ color?: string }>`
     width: 100%;
-    height: 500px;
-    background-color: ${props => props.color};
+    height: 600px;
+    background-color: ${props => props.color ? props.color : 'inherit'};
 `;
 
 const Content = styled.div`
@@ -27,7 +27,7 @@ const Content = styled.div`
 `;
 
 const LeftPortion = styled.div`
-    width: 45%;
+    width: 35%;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -35,25 +35,26 @@ const LeftPortion = styled.div`
 `;
 
 const RightPortion = styled.div`
-    width: 40%;
+    width: 50%;
     min-height: 400px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
 `;
 
-const H1 = styled.h1`
-    font-family: 'Berkshire Swash', cursive;
-    font-size: 48px;
+const HeaderText = styled.h3<{ level: number, weight: 'bold' | 'regular' | 'thin' }>`
+    font-family: 'Kodchasan', 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: ${props => props.level === 1 ? '2em' : props.level === 3 ? '1.5em' : '1.2em'};
+    font-weight: ${props => props.weight === 'bold' ? 700 : props.weight === 'regular' ? 400 : 300};
     color: ${Colors.darkGrey};
-    font-weight: 400;
-    margin: 0px;
+    margin: 18px 0px;
 `;
 
-const P = styled.p`
+const P = styled.p<{ isBold?: boolean, isSmall?: boolean, color?: string }>`
     margin: 0px;
-    color: ${Colors.darkGrey};
-    font-weight: 400;
+    color: ${props => props.color ? props.color : Colors.darkGrey};
+    font-weight: ${props => props.isBold ? 700 : 400};
+    line-height: 24px;
+    font-size: ${props => props.isSmall ? '13px' : '16px'};
 `;
 
 const Button = styled.button`
@@ -74,25 +75,185 @@ const Button = styled.button`
 const A = styled.a`
 `;
 
+const CardWrapper = styled.div<{ isRight?: boolean }>`
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: ${props => props.isRight ? 'flex-end' : 'flex-start'};
+`;
+
+const ContentWrapper = styled.div<{ isRight?: boolean }>`
+    width: 50%;
+    display: flex;
+    justify-content: ${props => props.isRight ? 'flex-end' : 'flex-start'};
+    align-items: center;
+`;
+
+const TextWrapper = styled.div`
+    padding: 20px;
+    box-sizing: border-box;
+    width: 85%;
+`;
+
+const TimelineWrapper = styled.div`
+    width: 100%;
+`;
+
+const RowContent = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+`;
+
+const LeftRowContent = styled.div`
+    width: 15%;
+`;
+
+const Box = styled.div`
+    background: rgba(164, 213, 244, 0.50) 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const Vertical = styled.div`
+    border-left: 2px solid ${Colors.paleGrey};
+    height: 40px;
+    margin: 10px 29px;
+`;
+
+
+
+const RightRowContent = styled.div`
+    width: 77%;
+`;
+
+
+
+
+
 
 class Home extends React.Component<HomeProps, HomeState> {
     state = {}
     render() {
         return (
-            <Section color={Colors.skyBlue}>
-                <Wrapper>
-                    <Content>
-                        <LeftPortion>
-                            <H1>Long-Term School Insurance Platform</H1>
-                            <P>Save for your schooling. Get a schooling loan. Get educated!</P>
-                            <A href="#"><Button>Get Started</Button></A>
-                        </LeftPortion>
-                        <RightPortion>
-                            <img src="../../static/images/BlackWoman.svg" alt="" width="480" />
-                        </RightPortion>
-                    </Content>
-                </Wrapper>
-            </Section>
+            <div>
+                <Section color={Colors.skyBlue}>
+                    <Wrapper>
+                        <Content>
+                            <LeftPortion>
+                                <HeaderText level={1} weight='bold'>Long-Term School Insurance Platform</HeaderText>
+                                <P>Save for your schooling. Get a schooling loan. Get educated!</P>
+                                <A href="#"><Button>Get Started</Button></A>
+                            </LeftPortion>
+                            <RightPortion>
+                                <img src="../../static/images/Img1.svg" alt="" width="620" />
+                            </RightPortion>
+                        </Content>
+                    </Wrapper>
+                </Section>
+                <Section>
+                    <Wrapper>
+                        <Content>
+                            <CardWrapper>
+                                <img src="../../static/images/Img2.svg" alt="" width="420" />
+                            </CardWrapper>
+                            <ContentWrapper>
+                                <TextWrapper>
+                                    <HeaderText level={3} weight='bold'>Start Saving for Education</HeaderText>
+                                    <P>
+                                        As a parent or guardian, you can start saving for the schooling of your ward or child(ren). Financial security begins with planning for the future. Save in bits now and enjoy the fruit tomorrow!
+                                    </P>
+                                </TextWrapper>
+                            </ContentWrapper>
+                        </Content>
+                    </Wrapper>
+                </Section>
+
+                <Section>
+                    <Wrapper>
+                        <Content>
+                            <ContentWrapper isRight={false}>
+                                <TextWrapper>
+                                    <HeaderText level={3} weight='bold'>Quick Sign up Process</HeaderText>
+                                    <TimelineWrapper>
+                                        <RowContent>
+                                            <LeftRowContent>
+                                                <Box>
+                                                    <P isBold={true}>01</P>
+                                                </Box>
+                                                <Vertical></Vertical>
+                                            </LeftRowContent>
+                                            <RightRowContent>
+                                                <HeaderText level={4} weight='bold'>Create a User Profile</HeaderText>
+                                                <P isSmall={true} color={Colors.paleGrey}>
+                                                    Get started by signing up on the platform with your details. Now is your time to start saving for education
+                                                </P>
+                                            </RightRowContent>
+                                        </RowContent>
+                                    </TimelineWrapper>
+
+                                    <TimelineWrapper>
+                                        <RowContent>
+                                            <LeftRowContent>
+                                                <Box>
+                                                    <P isBold={true}>02</P>
+                                                </Box>
+                                                <Vertical></Vertical>
+                                            </LeftRowContent>
+                                            <RightRowContent>
+                                                <HeaderText level={4} weight='bold'>Start a Savings Project</HeaderText>
+                                                <P isSmall={true} color={Colors.paleGrey}>
+                                                    Get started by signing up on the platform with your details. Now is your time to start saving for education
+                                                </P>
+                                            </RightRowContent>
+                                        </RowContent>
+                                    </TimelineWrapper>
+
+                                    <TimelineWrapper>
+                                        <RowContent>
+                                            <LeftRowContent>
+                                                <Box>
+                                                    <P isBold={true}>03</P>
+                                                </Box>
+                                                <Vertical></Vertical>
+                                            </LeftRowContent>
+                                            <RightRowContent>
+                                                <HeaderText level={4} weight='bold'>Update your Account Details</HeaderText>
+                                                <P isSmall={true} color={Colors.paleGrey}>
+                                                    Get started by signing up on the platform with your details. Now is your time to start saving for education
+                                                </P>
+                                            </RightRowContent>
+                                        </RowContent>
+                                    </TimelineWrapper>
+
+                                    <TimelineWrapper>
+                                        <RowContent>
+                                            <LeftRowContent>
+                                                <Box>
+                                                    <P isBold={true}>04</P>
+                                                </Box>
+                                            </LeftRowContent>
+                                            <RightRowContent>
+                                                <HeaderText level={4} weight='bold'>Make a widthdrawal when due</HeaderText>
+                                                <P isSmall={true} color={Colors.paleGrey}>
+                                                    Get started by signing up on the platform with your details. Now is your time to start saving for education
+                                                </P>
+                                            </RightRowContent>
+                                        </RowContent>
+                                    </TimelineWrapper>
+                                </TextWrapper>
+                            </ContentWrapper>
+                            <CardWrapper isRight={true}>
+                                <img src="../../static/images/Img3.svg" alt="" width="500" />
+                            </CardWrapper>
+                        </Content>
+                    </Wrapper>
+                </Section>
+            </div>
         );
     }
 }

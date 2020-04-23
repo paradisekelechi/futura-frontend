@@ -8,7 +8,7 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
-        <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Kodchasan:300,400,600,700&display=swap" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css?family=Kodchasan:300,400,500,600,700&display=swap" rel="stylesheet" />
       </Head>
 
       <LandingLayout>
